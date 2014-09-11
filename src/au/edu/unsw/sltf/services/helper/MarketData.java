@@ -21,7 +21,7 @@ public class MarketData {
 	private String bidSize;
 	private String askPrice;
 	private String askSize;
-	static List<MarketData> md = new ArrayList<MarketData>();
+	public static  List<MarketData> md = new ArrayList<MarketData>();
 	
 
 	public MarketData(String eventSetId) {
@@ -133,7 +133,7 @@ public class MarketData {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-
+	
 
 	public static void readCSV(String eventSetId) throws FileNotFoundException {
 		//Get scanner instance
@@ -168,4 +168,5 @@ public class MarketData {
         //Do not forget to close the scanner  
         scanner.close();
 	}
+
 }
