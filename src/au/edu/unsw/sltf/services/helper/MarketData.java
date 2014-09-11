@@ -1,18 +1,25 @@
 package au.edu.unsw.sltf.services.helper;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
 
 public class MarketData {
 	private int index;
 	private String sec;
-	private String Date;
-	private String Time;
-	private String GmtOffset;
+	private String date;
+	private String time;
+	private String gmtOffset;
 	private String type;
 	private String price;
 	private String volume;
@@ -20,13 +27,20 @@ public class MarketData {
 	private String bidSize;
 	private String askPrice;
 	private String askSize;
-	private List<MarketData> md = new ArrayList<MarketData>();
-
 	
+	private Calendar startTime;
+	private Calendar endTime;
+	private String csvString;
+	private long fileSize;
+	
+	static List<MarketData> md = new ArrayList<MarketData>();
+	
+
 	public MarketData(String eventSetId) {
 		try {
 			readCSV(eventSetId);
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -35,7 +49,71 @@ public class MarketData {
 		
 	}
 	
+	public MarketData(String sec2, Calendar startDate, Calendar endDate,
+			String dataSourceURL) {
+		this.sec = sec2;
+		this.startTime = startDate;
+		this.endTime = endDate;
+		URLtoMD(dataSourceURL);
+	}
 	
+
+	public List<MarketData> getMd() {
+		return md;
+	}
+
+	private void URLtoMD(String dataSourceURL) {
+        try {
+        	URL dataURL = new URL(dataSourceURL);
+	        
+	        InputStream is = dataURL.openStream();
+	        InputStreamReader isr = new InputStreamReader(is);
+	        BufferedReader br = new BufferedReader(isr);
+	        String theLine;
+	        String result = "";
+	
+	        if (endTime.before(startTime)) {
+	            //TODO
+	        }
+	        // Read in the lines
+	        while ((theLine = br.readLine()) != null) {
+	            // Don't process the header line, just add it to the result
+	            if (!theLine.contains("#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size")) {
+	                String[] lineArray = theLine.split(",");
+	                Calendar lineDate = getDateFromArray(lineArray);
+	                // Add the line to the result if it is between the startTime
+	                // and endTime and the security code is the same
+	                if ((lineDate.after(startTime) || lineDate.equals(startTime)) && (lineDate.before(endTime) || lineDate.equals(endTime))
+	                        && sec.equals(lineArray[0])) {
+	                    result += theLine + "\n";
+	                }
+	
+	            } else {
+	            	result += theLine + "\n";
+	            }
+	        }
+	        
+	        csvString = result;
+        } catch (Exception e) {
+        	//TODO
+        }
+	}
+
+	private Calendar getDateFromArray(String[] lineArray) {
+		Calendar c = convertDate(lineArray[1]);
+		convertTime(lineArray[2], c);
+		return c;
+	}
+
+	private void convertTime(String time, Calendar c) {
+		String[] times = time.split(":");
+		String[] seconds = times[2].split(".");
+		c.set(Calendar.HOUR, Integer.parseInt(times[0]));
+		c.set(Calendar.MINUTE, Integer.parseInt(times[1]));
+		c.set(Calendar.SECOND, Integer.parseInt(seconds[0]));
+		c.set(Calendar.MILLISECOND, Integer.parseInt(seconds[1]));
+	}
+
 	public String getSec() {
 		return sec;
 	}
@@ -45,27 +123,27 @@ public class MarketData {
 	}
 
 	public String getDate() {
-		return Date;
+		return date;
 	}
 
 	public void setDate(String date) {
-		Date = date;
+		this.date = date;
 	}
 
 	public String getTime() {
-		return Time;
+		return time;
 	}
 
 	public void setTime(String time) {
-		Time = time;
+		this.time = time;
 	}
 
 	public String getGmtOffset() {
-		return GmtOffset;
+		return gmtOffset;
 	}
 
 	public void setGmtOffset(String gmtOffset) {
-		GmtOffset = gmtOffset;
+		this.gmtOffset = gmtOffset;
 	}
 
 	public String getType() {
@@ -132,19 +210,36 @@ public class MarketData {
 		this.index = index;
 	}
 	
-	public List<MarketData> getMd() {
-		return md;
+	public Calendar getStartTime() {
+		return startTime;
+	}
+	
+	public void setStartTime(Calendar startTime) {
+		this.startTime = startTime;
+	}
+	
+	public Calendar getEndTime() {
+		return endTime;
+	}
+	
+	public void setEndTime(Calendar endTime) {
+		this.endTime = endTime;
 	}
 
 
 	private void readCSV(String eventSetId) throws FileNotFoundException {
-		//Get a scanner instance
-        Scanner scanner = new Scanner(new File(eventSetId));
+		//Get scanner instance
+		File f = new File(eventSetId);
+		this.fileSize = f.length();
+        Scanner scanner = new Scanner(f);
          
-        //Setting the delimiter used in file
+        //Set the delimiter used in file
         scanner.useDelimiter(",");
-        
+    	
         int i = 0;
+         
+        //Get all tokens and store them in some data structure
+        //I am just printing them
         
         while (scanner.hasNext()) 
         {
@@ -166,5 +261,52 @@ public class MarketData {
         //Do not forget to close the scanner  
         scanner.close();
 	}
+	
+	private Calendar convertDate(String date) {
+		Date d = null;
+        try {
+        	d = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+        } catch(ParseException e) {
+        	//TODO
+        	//throw new ImportDownloadFaultException("Invalid start date");
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        
+        return c;
+	}
 
+	public String stringify() {
+		if (csvString.isEmpty()) {
+			csvString += "#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size\n";
+			for (MarketData m : md) {
+	        	csvString += m.getSec() + ",";
+	        	csvString += m.getDate() + ",";
+	        	csvString += m.getTime() + ",";
+	        	csvString += m.getGmtOffset() + ",";
+	        	csvString += m.getType() + ",";
+	        	csvString += m.getPrice() + ",";
+	        	csvString += m.getVolume() + ",";
+	        	csvString += m.getBidPrice() + ",";
+	        	csvString += m.getBidSize() + ",";
+	        	csvString += m.getAskPrice() + ",";
+	        	csvString += m.getAskSize() + "\n";
+	        	csvString += "\n";
+			}
+		}
+		
+		return csvString;
+	}
+
+	public int size() {
+		return md.size();
+	}
+
+	public long getFileSize() {
+		return this.fileSize;
+	}
+
+	public String getCurrencyCode() {
+		return md.get(0).getPrice().replaceAll("[^A-Za-z]+", "");
+	}
 }
