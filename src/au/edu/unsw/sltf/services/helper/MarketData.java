@@ -3,7 +3,6 @@ package au.edu.unsw.sltf.services.helper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,22 +20,21 @@ public class MarketData {
 	private String bidSize;
 	private String askPrice;
 	private String askSize;
-	public static  List<MarketData> md = new ArrayList<MarketData>();
-	
+	private List<MarketData> md = new ArrayList<MarketData>();
 
+	
 	public MarketData(String eventSetId) {
 		try {
 			readCSV(eventSetId);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// TODO Auto-generated constructor stub
 	}
 	
 	private MarketData() {
 		
 	}
+	
 	
 	public String getSec() {
 		return sec;
@@ -134,19 +132,19 @@ public class MarketData {
 		this.index = index;
 	}
 	
+	public List<MarketData> getMd() {
+		return md;
+	}
 
-	public static void readCSV(String eventSetId) throws FileNotFoundException {
-		//Get scanner instance
+
+	private void readCSV(String eventSetId) throws FileNotFoundException {
+		//Get a scanner instance
         Scanner scanner = new Scanner(new File(eventSetId));
          
-        //Set the delimiter used in file
+        //Setting the delimiter used in file
         scanner.useDelimiter(",");
         
-    	
         int i = 0;
-         
-        //Get all tokens and store them in some data structure
-        //I am just printing them
         
         while (scanner.hasNext()) 
         {
