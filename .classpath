@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="/Users/saishav7/Downloads/jsoup-1.7.3.jar"/>
 	<classpathentry kind="lib" path="/Users/saishav7/Downloads/google-collections-0.9.jar"/>
 	<classpathentry kind="lib" path="/apps/axis2-1.6.2/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="/apps/axis2-1.6.2/lib/axis2-kernel-1.6.2.jar"/>
+	<classpathentry kind="lib" path="/apps/axis2-1.6.2/lib/axiom-api-1.2.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
