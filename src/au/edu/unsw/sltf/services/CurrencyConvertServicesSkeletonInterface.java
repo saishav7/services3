@@ -15,16 +15,16 @@
         /**
          * Auto generated method signature
          * 
-                                    * @param currencyConvertMarketData
-             * @throws CurrencyConvertMarketDataFaultException : 
+                                    * @param currenyConvertMarketData
+             * @throws CurrenyConvertMarketDataFaultException : 
          */
 
         
-                public au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument currencyConvertMarketData
+                public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketData
                 (
-                  au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument currencyConvertMarketData
+                  au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument currenyConvertMarketData
                  )
-            throws CurrencyConvertMarketDataFaultException;
+            throws CurrenyConvertMarketDataFaultException;
         
          }
     

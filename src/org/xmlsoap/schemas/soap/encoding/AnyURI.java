@@ -16,7 +16,7 @@ package org.xmlsoap.schemas.soap.encoding;
 public interface AnyURI extends org.apache.xmlbeans.XmlAnyURI
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(AnyURI.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sC08885EF118082250E5D4866BF3A2BB0").resolveHandle("anyurid9a6type");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(AnyURI.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("anyurid9a6type");
     
     /**
      * Gets the "id" attribute

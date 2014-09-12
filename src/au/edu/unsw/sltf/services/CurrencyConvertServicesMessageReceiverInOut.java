@@ -37,23 +37,23 @@
 
         
 
-            if("currencyConvertMarketData".equals(methodName)){
+            if("currenyConvertMarketData".equals(methodName)){
                 
-                au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument currencyConvertMarketDataResponse3 = null;
-	                        au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument wrappedParam =
-                                                             (au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument)fromOM(
+                au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketDataResponse7 = null;
+	                        au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument wrappedParam =
+                                                             (au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
-                                    au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument.class,
+                                    au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
-                                               currencyConvertMarketDataResponse3 =
+                                               currenyConvertMarketDataResponse7 =
                                                    
                                                    
-                                                         skel.currencyConvertMarketData(wrappedParam)
+                                                         skel.currenyConvertMarketData(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), currencyConvertMarketDataResponse3, false, new javax.xml.namespace.QName("http://sltf.unsw.edu.au/services",
-                                                    "currencyConvertMarketData"));
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), currenyConvertMarketDataResponse7, false, new javax.xml.namespace.QName("http://sltf.unsw.edu.au/services",
+                                                    "currenyConvertMarketData"));
                                     
             } else {
               throw new java.lang.RuntimeException("method not found");
@@ -62,9 +62,9 @@
 
         newMsgContext.setEnvelope(envelope);
         }
-        } catch (CurrencyConvertMarketDataFaultException e) {
+        } catch (CurrenyConvertMarketDataFaultException e) {
 
-            msgContext.setProperty(org.apache.axis2.Constants.FAULT_NAME,"currencyConvertMarketDataFault");
+            msgContext.setProperty(org.apache.axis2.Constants.FAULT_NAME,"currenyConvertMarketDataFault");
             org.apache.axis2.AxisFault f = createAxisFault(e);
             if (e.getFaultMessage() != null){
                 f.setDetail(toOM(e.getFaultMessage(),false));
@@ -79,7 +79,7 @@
         
         //
 
-            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument param, boolean optimizeContent)
+            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault{
 
             
@@ -88,7 +88,7 @@
 
             }
 
-            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument param)
+            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument param)
                     throws org.apache.axis2.AxisFault {
 
                 org.apache.xmlbeans.XmlOptions xmlOptions = new org.apache.xmlbeans.XmlOptions();
@@ -105,7 +105,7 @@
             }
         
 
-            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument param, boolean optimizeContent)
+            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault{
 
             
@@ -114,7 +114,7 @@
 
             }
 
-            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument param)
+            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument param)
                     throws org.apache.axis2.AxisFault {
 
                 org.apache.xmlbeans.XmlOptions xmlOptions = new org.apache.xmlbeans.XmlOptions();
@@ -131,7 +131,7 @@
             }
         
 
-            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument param, boolean optimizeContent)
+            private  org.apache.axiom.om.OMElement  toOM(au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault{
 
             
@@ -140,7 +140,7 @@
 
             }
 
-            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument param)
+            private org.apache.axiom.om.OMElement toOM(final au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument param)
                     throws org.apache.axis2.AxisFault {
 
                 org.apache.xmlbeans.XmlOptions xmlOptions = new org.apache.xmlbeans.XmlOptions();
@@ -156,7 +156,7 @@
                 }
             }
         
-                            private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
+                            private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
                             throws org.apache.axis2.AxisFault {
                             org.apache.axiom.soap.SOAPEnvelope envelope = factory.getDefaultEnvelope();
                             if (param != null){
@@ -181,39 +181,39 @@
         try{
         
 
-            if (au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument.class.equals(type)){
+            if (au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.class.equals(type)){
             if (extraNamespaces!=null){
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching(),
             new org.apache.xmlbeans.XmlOptions().setLoadAdditionalNamespaces(extraNamespaces));
             }else{
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching());
             }
             }
 
         
 
-            if (au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument.class.equals(type)){
+            if (au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument.class.equals(type)){
             if (extraNamespaces!=null){
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching(),
             new org.apache.xmlbeans.XmlOptions().setLoadAdditionalNamespaces(extraNamespaces));
             }else{
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching());
             }
             }
 
         
 
-            if (au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument.class.equals(type)){
+            if (au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument.class.equals(type)){
             if (extraNamespaces!=null){
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching(),
             new org.apache.xmlbeans.XmlOptions().setLoadAdditionalNamespaces(extraNamespaces));
             }else{
-            return au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument.Factory.parse(
+            return au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument.Factory.parse(
             param.getXMLStreamReaderWithoutCaching());
             }
             }

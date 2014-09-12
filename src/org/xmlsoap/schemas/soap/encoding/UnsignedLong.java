@@ -16,7 +16,7 @@ package org.xmlsoap.schemas.soap.encoding;
 public interface UnsignedLong extends org.apache.xmlbeans.XmlUnsignedLong
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(UnsignedLong.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sC08885EF118082250E5D4866BF3A2BB0").resolveHandle("unsignedlong40d7type");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(UnsignedLong.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("unsignedlong40d7type");
     
     /**
      * Gets the "id" attribute
