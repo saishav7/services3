@@ -217,41 +217,41 @@ public class CurrencyConverter {
 	
 	public void convertPrices(String targetCurrency, List<MarketData> m){
 		String priceValue;
-   	 String fullPrice;
-   	 String fullBidPrice;
-   	 String fullAskPrice;
-   	 String askPriceValue;
-   	 String bidPriceValue;
-   	
-   	 for (int i = 0 ; i < m.size() ; i++){
-   		 if(!(m.get(i).getPrice()).equals("")) {
-   			 fullPrice = m.get(i).getPrice();
-   			 priceValue = fullPrice.replaceAll("[^\\d.]", "");
-   			 BigDecimal resultPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(priceValue));
-   			 convertedPriceValue.add(resultPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-   		 }
-   		 else
-   			 convertedPriceValue.add("");
-   		 
-   		 if(!(m.get(i).getBidPrice()).equals("")) {
-   			 fullBidPrice = m.get(i).getBidPrice();
-   			 bidPriceValue = fullBidPrice.replaceAll("[^\\d.]", "");
-   			 BigDecimal resultBidPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(bidPriceValue));
-   			
-   			 convertedBidPriceValue.add(resultBidPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-   		 }
-   		else
-  			 convertedBidPriceValue.add("");
-   		 
-   		 if(!(m.get(i).getAskPrice()).equals("")) {
-   			 fullAskPrice = m.get(i).getAskPrice();
-   			 askPriceValue = fullAskPrice.replaceAll("[^\\d.]", "");
-   			 BigDecimal resultAskPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(askPriceValue));
-   			 convertedAskPriceValue.add(resultAskPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-   		 }
-   		else
-  			 convertedAskPriceValue.add("");
-   	}
+	   	 String fullPrice;
+	   	 String fullBidPrice;
+	   	 String fullAskPrice;
+	   	 String askPriceValue;
+	   	 String bidPriceValue;
+	   	
+	   	 for (int i = 0 ; i < m.size() ; i++){
+	   		 if(!(m.get(i).getPrice()).equals("")) {
+	   			 fullPrice = m.get(i).getPrice();
+	   			 priceValue = fullPrice.replaceAll("[^\\d.]", "");
+	   			 BigDecimal resultPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(priceValue));
+	   			 convertedPriceValue.add(resultPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+	   		 }
+	   		 else
+	   			 convertedPriceValue.add("");
+	   		 
+	   		 if(!(m.get(i).getBidPrice()).equals("")) {
+	   			 fullBidPrice = m.get(i).getBidPrice();
+	   			 bidPriceValue = fullBidPrice.replaceAll("[^\\d.]", "");
+	   			 BigDecimal resultBidPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(bidPriceValue));
+	   			
+	   			 convertedBidPriceValue.add(resultBidPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+	   		 }
+	   		else
+	  			 convertedBidPriceValue.add("");
+	   		 
+	   		 if(!(m.get(i).getAskPrice()).equals("")) {
+	   			 fullAskPrice = m.get(i).getAskPrice();
+	   			 askPriceValue = fullAskPrice.replaceAll("[^\\d.]", "");
+	   			 BigDecimal resultAskPrice = new BigDecimal(currencyMap.get(targetCurrency)).multiply(new BigDecimal(askPriceValue));
+	   			 convertedAskPriceValue.add(resultAskPrice.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+	   		 }
+	   		else
+	  			 convertedAskPriceValue.add("");
+	   	}
 	}
 
 }
