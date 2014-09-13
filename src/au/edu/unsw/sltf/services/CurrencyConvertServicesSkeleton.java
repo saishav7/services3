@@ -19,6 +19,7 @@ import au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument.Curre
 import au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument.CurrencyConvertMarketDataFault;
 import au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.CurrenyConvertMarketData;
 import au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument.CurrenyConvertMarketDataFault;
+import au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultType.Enum;
 import au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument.CurrenyConvertMarketDataResponse;
 import au.edu.unsw.sltf.services.helper.CurrencyConverter;
 import au.edu.unsw.sltf.services.helper.MarketData;

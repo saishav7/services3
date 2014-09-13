@@ -8,6 +8,8 @@
  */
 package au.edu.unsw.sltf.services;
 
+import au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum;
+
 
 /**
  * A document containing one currenyConvertMarketDataFault(@http://sltf.unsw.edu.au/services) element.
@@ -57,7 +59,7 @@ public interface CurrenyConvertMarketDataFaultDocument extends org.apache.xmlbea
         /**
          * Sets the "InvalidMarketData" element
          */
-        void setInvalidMarketData(au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultType.Enum invalidMarketData);
+        void setInvalidMarketData(Enum faultType);
         
         /**
          * Sets (as xml) the "InvalidMarketData" element
