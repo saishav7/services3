@@ -17,6 +17,9 @@ import java.util.Random;
 import au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument.CurrencyConvertMarketData;
 import au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument.CurrencyConvertMarketDataResponse;
 import au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultDocument.CurrencyConvertMarketDataFault;
+import au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.CurrenyConvertMarketData;
+import au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultDocument.CurrenyConvertMarketDataFault;
+import au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument.CurrenyConvertMarketDataResponse;
 import au.edu.unsw.sltf.services.helper.CurrencyConverter;
 import au.edu.unsw.sltf.services.helper.MarketData;
     /**
@@ -34,18 +37,18 @@ import au.edu.unsw.sltf.services.helper.MarketData;
              * @throws CurrencyConvertMarketDataFaultException 
          */
         
-        public au.edu.unsw.sltf.services.CurrencyConvertMarketDataResponseDocument currencyConvertMarketData
+        public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currencyConvertMarketData
         (
-        au.edu.unsw.sltf.services.CurrencyConvertMarketDataDocument currencyConvertMarketData0
+        au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument currencyConvertMarketData0
         )
-  throws CurrencyConvertMarketDataFaultException{
-      	 CurrencyConvertMarketData ccmd = currencyConvertMarketData0.getCurrencyConvertMarketData();
+  throws CurrenyConvertMarketDataFaultException{
+      	 CurrenyConvertMarketData ccmd = currencyConvertMarketData0.getCurrenyConvertMarketData();
       	 MarketData marketData;
 			try {
 				marketData = new MarketData(ccmd.getEventSetId());
           	 List<MarketData> m = marketData.getMd();
-          	 CurrencyConvertMarketDataResponseDocument ccmdRespDoc = CurrencyConvertMarketDataResponseDocument.Factory.newInstance();
-          	 CurrencyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrencyConvertMarketDataResponse();
+          	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
+          	 CurrenyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrenyConvertMarketDataResponse();
           	 
           	 CurrencyConverter c = new CurrencyConverter();
           	 c.convertPrices(ccmd.getTargetCurrency(),m);
@@ -85,7 +88,7 @@ import au.edu.unsw.sltf.services.helper.MarketData;
            
            
            ccmdResp.setEventSetId(Integer.toString(fileName));
-           ccmdRespDoc.setCurrencyConvertMarketDataResponse(ccmdResp);
+           ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
            return ccmdRespDoc;
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
@@ -94,18 +97,28 @@ import au.edu.unsw.sltf.services.helper.MarketData;
       	 
 }
                  
-	     private CurrencyConvertMarketDataFaultException ccFaultException(String type) {
+	     private CurrenyConvertMarketDataFaultException ccFaultException(String type) {
 	         au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum faultType = 
 	        		 au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum.
 	        		 forString(type);
-	         CurrencyConvertMarketDataFault fault = CurrencyConvertMarketDataFault.Factory.newInstance();
+	         CurrenyConvertMarketDataFault fault = CurrenyConvertMarketDataFault.
+	        		 Factory.newInstance();
 	         fault.setInvalidMarketData(faultType);
-	         CurrencyConvertMarketDataFaultDocument faultDoc = CurrencyConvertMarketDataFaultDocument.Factory.newInstance();
-	         faultDoc.setCurrencyConvertMarketDataFault(fault);
-	         CurrencyConvertMarketDataFaultException ie = new CurrencyConvertMarketDataFaultException();
+	         CurrenyConvertMarketDataFaultDocument faultDoc = CurrenyConvertMarketDataFaultDocument.
+	        		 Factory.newInstance();
+	         faultDoc.setCurrenyConvertMarketDataFault(fault);
+	         CurrenyConvertMarketDataFaultException ie = new CurrenyConvertMarketDataFaultException();
 	         ie.setFaultMessage(faultDoc);
 	         
 	         return ie;
+		}
+
+		@Override
+		public CurrenyConvertMarketDataResponseDocument currenyConvertMarketData(
+				CurrenyConvertMarketDataDocument currenyConvertMarketData)
+				throws CurrenyConvertMarketDataFaultException {
+			// TODO Auto-generated method stub
+			return null;
 		}
      
     }
