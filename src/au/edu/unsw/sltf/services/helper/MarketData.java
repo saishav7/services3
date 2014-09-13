@@ -3,8 +3,10 @@ package au.edu.unsw.sltf.services.helper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import com.sun.tools.xjc.reader.xmlschema.parser.IncorrectNamespaceURIChecker;
 
 public class MarketData {
 	private int index;
@@ -33,9 +37,8 @@ public class MarketData {
 	private String csvString;
 	private long fileSize;
 	
-	private List<MarketData> md = new ArrayList<MarketData>();
-    private String resourcesFolder = System.getProperty("catalina.home") + "/webapps/ROOT/cs9322ass1/";
-
+	static List<MarketData> md = new ArrayList<MarketData>();
+	
 
 	public MarketData(String eventSetId) throws FileNotFoundException {
 		try {
@@ -51,7 +54,7 @@ public class MarketData {
 	}
 	
 	public MarketData(String sec2, Calendar startDate, Calendar endDate,
-			String dataSourceURL) {
+			String dataSourceURL) throws IOException, IncorrectTimeException {
 		this.sec = sec2;
 		this.startTime = startDate;
 		this.endTime = endDate;
@@ -63,8 +66,7 @@ public class MarketData {
 		return md;
 	}
 
-	private void URLtoMD(String dataSourceURL) {
-        try {
+	private void URLtoMD(String dataSourceURL) throws IOException, IncorrectTimeException, ParseException {
         	URL dataURL = new URL(dataSourceURL);
 	        
 	        InputStream is = dataURL.openStream();
@@ -74,7 +76,7 @@ public class MarketData {
 	        String result = "";
 	
 	        if (endTime.before(startTime)) {
-	            //TODO
+	            throw new IncorrectTimeException();
 	        }
 	        // Read in the lines
 	        while ((theLine = br.readLine()) != null) {
@@ -95,12 +97,9 @@ public class MarketData {
 	        }
 	        
 	        csvString = result;
-        } catch (Exception e) {
-        	//TODO
-        }
 	}
 
-	private Calendar getDateFromArray(String[] lineArray) {
+	private Calendar getDateFromArray(String[] lineArray) throws ParseException {
 		Calendar c = convertDate(lineArray[1]);
 		convertTime(lineArray[2], c);
 		return c;
@@ -230,57 +229,42 @@ public class MarketData {
 
 	private void readCSV(String eventSetId) throws FileNotFoundException {
 		//Get scanner instance
-		File f = new File(resourcesFolder+eventSetId+".csv");
+		File f = new File(eventSetId);
 		this.fileSize = f.length();
-        Scanner lineScanner = new Scanner(f);
-         lineScanner.nextLine();
+        Scanner scanner = new Scanner(f);
+         
+        //Set the delimiter used in file
+        scanner.useDelimiter(",");
+    	
+        int i = 0;
+         
         //Get all tokens and store them in some data structure
+        //I am just printing them
         
-        while (lineScanner.hasNextLine()) 
+        while (scanner.hasNext()) 
         {
-        	String line = lineScanner.nextLine();
-        	Scanner scanner = new Scanner(line);
-        	scanner.useDelimiter(",");
-        	
-        	MarketData marketData = new MarketData();
-        	if(scanner.hasNext())
-        		marketData.setSec(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setDate(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setTime(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setGmtOffset(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setType(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setPrice(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setVolume(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setBidPrice(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setBidSize(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setAskPrice(scanner.next());
-        	if(scanner.hasNext())
-        		marketData.setAskSize(scanner.next());
-        	else
-        		marketData.setAskSize("");
-        	md.add(marketData);
-        	scanner.close();
+        	md.set(i, new MarketData());
+        	md.get(i).setSec(scanner.next());
+        	md.get(i).setDate(scanner.next());
+        	md.get(i).setTime(scanner.next());
+        	md.get(i).setGmtOffset(scanner.next());
+        	md.get(i).setType(scanner.next());
+        	md.get(i).setPrice(scanner.next());
+        	md.get(i).setVolume(scanner.next());
+        	md.get(i).setBidPrice(scanner.next());
+        	md.get(i).setBidSize(scanner.next());
+        	md.get(i).setAskPrice(scanner.next());
+        	md.get(i).setAskSize(scanner.next());
+        	i++;
         }
-        lineScanner.close();
+         
+        //Do not forget to close the scanner  
+        scanner.close();
 	}
 	
-	private Calendar convertDate(String date) {
+	private Calendar convertDate(String date) throws ParseException {
 		Date d = null;
-        try {
-        	d = new SimpleDateFormat("dd/mm/yyyy").parse(date);
-        } catch(ParseException e) {
-        	//TODO
-        	//throw new ImportDownloadFaultException("Invalid start date");
-        }
+    	d = new SimpleDateFormat("dd/mm/yyyy").parse(date);
         Calendar c = Calendar.getInstance();
         c.setTime(d);
         

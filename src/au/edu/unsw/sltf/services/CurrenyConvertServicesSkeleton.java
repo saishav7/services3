@@ -26,27 +26,27 @@ import au.edu.unsw.sltf.services.helper.MarketData;
     /**
      *  CurrencyConvertServicesSkeleton java skeleton for the axisService
      */
-    public class CurrencyConvertServicesSkeleton implements CurrencyConvertServicesSkeletonInterface{
+    public class CurrenyConvertServicesSkeleton implements CurrencyConvertServicesSkeletonInterface{
     	
         private String resourcesFolder = System.getProperty("catalina.home") + "/webapps/ROOT/cs9322ass1/";
 
         /**
          * Auto generated method signature
          * 
-             * @param currencyConvertMarketData0 
-             * @return currencyConvertMarketDataResponse1 
-             * @throws CurrencyConvertMarketDataFaultException 
+         * @param currencyConvertMarketData0 
+         * @return currencyConvertMarketDataResponse1 
+         * @throws CurrencyConvertMarketDataFaultException 
          */
         
         public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketData
         (
-        au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument currencyConvertMarketData0
+        au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument currenyConvertMarketData0
         )
   throws CurrenyConvertMarketDataFaultException{
-      	 CurrenyConvertMarketData ccmd = currencyConvertMarketData0.getCurrenyConvertMarketData();
+      	 CurrenyConvertMarketData ccmd = currenyConvertMarketData0.getCurrenyConvertMarketData();
       	 MarketData marketData;
 			try {
-				marketData = new MarketData(ccmd.getEventSetId());
+			marketData = new MarketData(ccmd.getEventSetId());
           	 List<MarketData> m = marketData.getMd();
           	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
           	 CurrenyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrenyConvertMarketDataResponse();
@@ -54,8 +54,8 @@ import au.edu.unsw.sltf.services.helper.MarketData;
           	 CurrencyConverter c = new CurrencyConverter();
           	 c.convertPrices(ccmd.getTargetCurrency(),m);
       	 
-           Random rand = new Random();
-           int  fileName = rand.nextInt(1000000) + 1;
+          	 Random rand = new Random();
+          	 int  fileName = rand.nextInt(1000000) + 1;
            
            File outputFile = new File(resourcesFolder + "/" + fileName + ".csv");
            while (outputFile.exists()) {
@@ -85,16 +85,16 @@ import au.edu.unsw.sltf.services.helper.MarketData;
           		fw.close();
            } catch (IOException e) {
                e.printStackTrace();
+               ccFaultException("ProgramError");
            }
-           
            
            ccmdResp.setEventSetId(Integer.toString(fileName));
            ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
            return ccmdRespDoc;
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-				throw ccFaultException("InvalidEventSetId");
-			}
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			throw ccFaultException("InvalidEventSetId");
+		}
       	 
 }
                  
