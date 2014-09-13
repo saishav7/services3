@@ -38,7 +38,7 @@ import au.edu.unsw.sltf.services.helper.MarketData;
              * @throws CurrencyConvertMarketDataFaultException 
          */
         
-        public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currencyConvertMarketData
+        public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketData
         (
         au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument currencyConvertMarketData0
         )
@@ -114,13 +114,5 @@ import au.edu.unsw.sltf.services.helper.MarketData;
 	         return ie;
 		}
 
-		@Override
-		public CurrenyConvertMarketDataResponseDocument currenyConvertMarketData(
-				CurrenyConvertMarketDataDocument currenyConvertMarketData)
-				throws CurrenyConvertMarketDataFaultException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-     
     }
     
