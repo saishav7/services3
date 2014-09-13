@@ -33,9 +33,9 @@ import au.edu.unsw.sltf.services.helper.MarketData;
         /**
          * Auto generated method signature
          * 
-             * @param currencyConvertMarketData0 
-             * @return currencyConvertMarketDataResponse1 
-             * @throws CurrencyConvertMarketDataFaultException 
+         * @param currencyConvertMarketData0 
+         * @return currencyConvertMarketDataResponse1 
+         * @throws CurrencyConvertMarketDataFaultException 
          */
         
         public au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketData
