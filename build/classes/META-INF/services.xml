@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) --><serviceGroup>
+    <service name="CurrencyConvertServices">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="au.edu.unsw.sltf.services.CurrencyConvertServicesMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">au.edu.unsw.sltf.services.CurrencyConvertServicesSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="currenyConvertMarketData" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sltf.unsw.edu.au/services">
+            <actionMapping>urn:currenyConvertMarketData</actionMapping>
+            <outputActionMapping>urn:currenyConvertMarketDataResponse</outputActionMapping>
+            <faultActionMapping faultName="mainFault">http://sltf.unsw.edu.au/services/CurrencyConvertServicesPortType/currenyConvertMarketData/Fault/mainFault</faultActionMapping>
+            <faultActionMapping faultName="CurrenyConvertMarketDataFault">http://sltf.unsw.edu.au/services/CurrencyConvertServicesPortType/currenyConvertMarketData/Fault/mainFault</faultActionMapping>
+            <faultActionMapping faultName="CurrenyConvertMarketDataFault_Exception">http://sltf.unsw.edu.au/services/CurrencyConvertServicesPortType/currenyConvertMarketData/Fault/mainFault</faultActionMapping>
+            <faultActionMapping faultName="currenyConvertMarketDataFault">urn:currenyConvertMarketDatacurrenyConvertMarketDataFault</faultActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
