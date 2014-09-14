@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Random;
 
@@ -93,6 +94,10 @@ import au.edu.unsw.sltf.services.helper.MarketData;
 	           ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
 	           return ccmdRespDoc;
 			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+				throw ccFaultException("InvalidEventSetId");
+			} catch (ParseException e1) {
+				e1.printStackTrace();
 				throw ccFaultException("InvalidEventSetId");
 			}
         }
