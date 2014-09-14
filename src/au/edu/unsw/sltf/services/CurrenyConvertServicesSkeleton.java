@@ -45,53 +45,57 @@ import au.edu.unsw.sltf.services.helper.MarketData;
   throws CurrenyConvertMarketDataFaultException{
       	 CurrenyConvertMarketData ccmd = currenyConvertMarketData0.getCurrenyConvertMarketData();
       	 MarketData marketData;
-			marketData = new MarketData(ccmd.getEventSetId());
-          	 List<MarketData> m = marketData.getMd();
-          	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
-          	 CurrenyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrenyConvertMarketDataResponse();
-          	 
-          	 CurrencyConverter c = new CurrencyConverter();
-          	 c.convertPrices(ccmd.getTargetCurrency(),m);
-      	 
-          	 Random rand = new Random();
-          	 int  fileName = rand.nextInt(1000000) + 1;
-           
-           File outputFile = new File(resourcesFolder + "/" + fileName + ".csv");
-           while (outputFile.exists()) {
-          	 fileName = rand.nextInt(1000000) + 1;
-               outputFile = new File(resourcesFolder + "/" + fileName + ".csv");
-           }
-           try {
-          	 FileWriter fw = new FileWriter(resourcesFolder + "/" + fileName + ".csv");
-          	 fw.write("#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size\n");
-          		for (int i = 0; i < m.size(); i++) {
-          			fw.write(m.get(i).getSec() + "," +
-          					m.get(i).getDate() + "," +
-          					m.get(i).getTime() + "," +
-          					m.get(i).getGmtOffset() + "," +
-          					m.get(i).getType() + "," +
-          					(c.getConvertedPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
-          					c.getConvertedPriceValue().get(i) + "," +
-          					m.get(i).getVolume() + "," +
-          					(c.getConvertedBidPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
-          					c.getConvertedBidPriceValue().get(i) + "," +
-          					m.get(i).getBidSize() + "," +
-          					(c.getConvertedAskPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
-          					c.getConvertedAskPriceValue().get(i) + "," +
-          					m.get(i).getAskSize() + "\n");
-          		}
-          	 
-          		fw.close();
-           } catch (IOException e) {
-               e.printStackTrace();
-               ccFaultException("ProgramError");
-           }
-           
-           ccmdResp.setEventSetId(Integer.toString(fileName));
-           ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
-           return ccmdRespDoc;
-      	 
-}
+			try {
+				marketData = new MarketData(ccmd.getEventSetId());
+				
+	          	 List<MarketData> m = marketData.getMd();
+	          	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
+	          	 CurrenyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrenyConvertMarketDataResponse();
+	          	 
+	          	 CurrencyConverter c = new CurrencyConverter();
+	          	 c.convertPrices(ccmd.getTargetCurrency(),m);
+	      	 
+	          	 Random rand = new Random();
+	          	 int  fileName = rand.nextInt(1000000) + 1;
+	           
+	           File outputFile = new File(resourcesFolder + "/" + fileName + ".csv");
+	           while (outputFile.exists()) {
+	          	 fileName = rand.nextInt(1000000) + 1;
+	               outputFile = new File(resourcesFolder + "/" + fileName + ".csv");
+	           }
+	           try {
+	          	 FileWriter fw = new FileWriter(resourcesFolder + "/" + fileName + ".csv");
+	          	 fw.write("#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size\n");
+	          		for (int i = 0; i < m.size(); i++) {
+	          			fw.write(m.get(i).getSec() + "," +
+	          					m.get(i).getDate() + "," +
+	          					m.get(i).getTime() + "," +
+	          					m.get(i).getGmtOffset() + "," +
+	          					m.get(i).getType() + "," +
+	          					(c.getConvertedPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
+	          					c.getConvertedPriceValue().get(i) + "," +
+	          					m.get(i).getVolume() + "," +
+	          					(c.getConvertedBidPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
+	          					c.getConvertedBidPriceValue().get(i) + "," +
+	          					m.get(i).getBidSize() + "," +
+	          					(c.getConvertedAskPriceValue().get(i) != "" ? ccmd.getTargetCurrency():"") +
+	          					c.getConvertedAskPriceValue().get(i) + "," +
+	          					m.get(i).getAskSize() + "\n");
+	          		}
+	          	 
+	          		fw.close();
+	           } catch (IOException e) {
+	               e.printStackTrace();
+	               ccFaultException("ProgramError");
+	           }
+	           
+	           ccmdResp.setEventSetId(Integer.toString(fileName));
+	           ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
+	           return ccmdRespDoc;
+			} catch (FileNotFoundException e1) {
+				throw ccFaultException("InvalidEventSetId");
+			}
+        }
                  
 	     private CurrenyConvertMarketDataFaultException ccFaultException(String type) {
 	         au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum faultType = 

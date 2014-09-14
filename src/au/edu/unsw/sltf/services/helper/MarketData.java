@@ -3,6 +3,7 @@ package au.edu.unsw.sltf.services.helper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -37,12 +38,8 @@ public class MarketData {
     private String resourcesFolder = System.getProperty("catalina.home") + "/webapps/ROOT/cs9322ass1/";
 
 
-	public MarketData(String eventSetId) {
-		try {
-			readCSV(eventSetId);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public MarketData(String eventSetId) throws FileNotFoundException {
+		readCSV(eventSetId);
 	}
 	
 	private MarketData() {
@@ -50,7 +47,7 @@ public class MarketData {
 	}
 	
 	public MarketData(String sec2, Calendar startDate, Calendar endDate,
-			String dataSourceURL) {
+			String dataSourceURL) throws IOException, IncorrectTimeException, ParseException {
 		this.sec = sec2;
 		this.startTime = startDate;
 		this.endTime = endDate;
@@ -62,44 +59,41 @@ public class MarketData {
 		return md;
 	}
 
-	private void URLtoMD(String dataSourceURL) {
-        try {
-        	URL dataURL = new URL(dataSourceURL);
-	        
-	        InputStream is = dataURL.openStream();
-	        InputStreamReader isr = new InputStreamReader(is);
-	        BufferedReader br = new BufferedReader(isr);
-	        String theLine;
-	        String result = "";
-	
-	        if (endTime.before(startTime)) {
-	            //TODO
-	        }
-	        // Read in the lines
-	        while ((theLine = br.readLine()) != null) {
-	            // Don't process the header line, just add it to the result
-	            if (!theLine.contains("#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size")) {
-	                String[] lineArray = theLine.split(",");
-	                Calendar lineDate = getDateFromArray(lineArray);
-	                // Add the line to the result if it is between the startTime
-	                // and endTime and the security code is the same
-	                if ((lineDate.after(startTime) || lineDate.equals(startTime)) && (lineDate.before(endTime) || lineDate.equals(endTime))
-	                        && sec.equals(lineArray[0])) {
-	                    result += theLine + "\n";
-	                }
-	
-	            } else {
-	            	result += theLine + "\n";
-	            }
-	        }
-	        
-	        csvString = result;
-        } catch (Exception e) {
-        	//TODO
+	private void URLtoMD(String dataSourceURL) throws IOException, IncorrectTimeException, ParseException {
+    	URL dataURL = new URL(dataSourceURL);
+        
+        InputStream is = dataURL.openStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        String theLine;
+        String result = "";
+
+        if (endTime.before(startTime)) {
+            throw new IncorrectTimeException();
         }
+        
+        // Read in the lines
+        while ((theLine = br.readLine()) != null) {
+            // Don't process the header line, just add it to the result
+            if (!theLine.contains("#RIC,Date[G],Time[G],GMT Offset,Type,Price,Volume,Bid Price,Bid Size,Ask Price,Ask Size")) {
+                String[] lineArray = theLine.split(",");
+                Calendar lineDate = getDateFromArray(lineArray);
+                // Add the line to the result if it is between the startTime
+                // and endTime and the security code is the same
+                if ((lineDate.after(startTime) || lineDate.equals(startTime)) && (lineDate.before(endTime) || lineDate.equals(endTime))
+                        && sec.equals(lineArray[0])) {
+                    result += theLine + "\n";
+                }
+
+            } else {
+            	result += theLine + "\n";
+            }
+        }
+        
+        csvString = result;
 	}
 
-	private Calendar getDateFromArray(String[] lineArray) {
+	private Calendar getDateFromArray(String[] lineArray) throws ParseException {
 		Calendar c = convertDate(lineArray[1]);
 		convertTime(lineArray[2], c);
 		return c;
@@ -272,14 +266,8 @@ public class MarketData {
         lineScanner.close();
 	}
 	
-	private Calendar convertDate(String date) {
-		Date d = null;
-        try {
-        	d = new SimpleDateFormat("dd/mm/yyyy").parse(date);
-        } catch(ParseException e) {
-        	//TODO
-        	//throw new ImportDownloadFaultException("Invalid start date");
-        }
+	private Calendar convertDate(String date) throws ParseException {
+		Date d = new SimpleDateFormat("dd-MMM-yyyy").parse(date);
         Calendar c = Calendar.getInstance();
         c.setTime(d);
         
