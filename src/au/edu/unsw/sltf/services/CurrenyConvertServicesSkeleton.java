@@ -49,6 +49,10 @@ import au.edu.unsw.sltf.services.helper.MarketData;
 			try {
 				marketData = new MarketData(ccmd.getEventSetId());
 				
+				if(marketData.getCurrencyCode().equals(ccmd.getTargetCurrency())){
+	          		throw ccFaultException("InvalidTargetCurrency");
+	          	}
+				
 	          	 List<MarketData> m = marketData.getMd();
 	          	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
 	          	 CurrenyConvertMarketDataResponse ccmdResp = ccmdRespDoc.addNewCurrenyConvertMarketDataResponse();
