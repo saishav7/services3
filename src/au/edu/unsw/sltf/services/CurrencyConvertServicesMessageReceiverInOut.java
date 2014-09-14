@@ -39,20 +39,20 @@
 
             if("currenyConvertMarketData".equals(methodName)){
                 
-                au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketDataResponse7 = null;
+                au.edu.unsw.sltf.services.CurrenyConvertMarketDataResponseDocument currenyConvertMarketDataResponse3 = null;
 	                        au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument wrappedParam =
                                                              (au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
                                     au.edu.unsw.sltf.services.CurrenyConvertMarketDataDocument.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
-                                               currenyConvertMarketDataResponse7 =
+                                               currenyConvertMarketDataResponse3 =
                                                    
                                                    
                                                          skel.currenyConvertMarketData(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), currenyConvertMarketDataResponse7, false, new javax.xml.namespace.QName("http://sltf.unsw.edu.au/services",
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), currenyConvertMarketDataResponse3, false, new javax.xml.namespace.QName("http://sltf.unsw.edu.au/services",
                                                     "currenyConvertMarketData"));
                                     
             } else {

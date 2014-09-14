@@ -23,6 +23,7 @@
                     <xs:enumeration value="InvalidEventSetId"/>
                     <xs:enumeration value="InvalidTargetCurrency"/>
                     <xs:enumeration value="PriceAlreadyConverted"/>
+                    <xs:enumeration value="ProgramError"/>
                 </xs:restriction>
             </xs:simpleType>
             <xs:element name="currenyConvertMarketDataFault">

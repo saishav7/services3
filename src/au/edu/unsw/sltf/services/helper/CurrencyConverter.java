@@ -215,7 +215,11 @@ public class CurrencyConverter {
 		this.convertedBidPriceValue = convertedBidPriceValue;
 	}
 	
-	public void convertPrices(String targetCurrency, List<MarketData> m){
+	public void convertPrices(String targetCurrency, List<MarketData> m) throws InvalidCurrencyException{
+		if (currencyMap.get(targetCurrency) == null) {
+			throw new InvalidCurrencyException();
+		}
+		
 		String priceValue;
 	   	 String fullPrice;
 	   	 String fullBidPrice;

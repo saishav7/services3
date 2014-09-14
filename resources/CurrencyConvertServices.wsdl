@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://sltf.unsw.edu.au/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://sltf.unsw.edu.au/services" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://sltf.unsw.edu.au/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions targetNamespace="http://sltf.unsw.edu.au/services" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://sltf.unsw.edu.au/services" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sltf.unsw.edu.au/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
 <wsdl:documentation>Web service interface for COMP9322 assignment 1 (Curreny Conversion) </wsdl:documentation>
   <wsdl:types>
     <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sltf.unsw.edu.au/services" xmlns:tns="http://sltf.unsw.edu.au/services">
@@ -23,6 +23,7 @@
                     <xs:enumeration value="InvalidEventSetId"/>
                     <xs:enumeration value="InvalidTargetCurrency"/>
                     <xs:enumeration value="PriceAlreadyConverted"/>
+                    <xs:enumeration value="ProgramError"/>
                 </xs:restriction>
             </xs:simpleType>
             <xs:element name="currenyConvertMarketDataFault">

@@ -125,7 +125,7 @@ public class CurrenyConvertMarketDataFaultDocumentImpl extends org.apache.xmlbea
         /**
          * Sets the "InvalidMarketData" element
          */
-        public void setInvalidMarketData(au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum invalidMarketData)
+        public void setInvalidMarketData(au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultType.Enum invalidMarketData)
         {
             synchronized (monitor())
             {

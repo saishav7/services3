@@ -8,8 +8,6 @@
  */
 package au.edu.unsw.sltf.services;
 
-import au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum;
-
 
 /**
  * A document containing one currenyConvertMarketDataFault(@http://sltf.unsw.edu.au/services) element.
@@ -19,7 +17,7 @@ import au.edu.unsw.sltf.services.CurrencyConvertMarketDataFaultType.Enum;
 public interface CurrenyConvertMarketDataFaultDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFaultDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("currenyconvertmarketdatafault3553doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFaultDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s971434CAC32F1D084047111627831612").resolveHandle("currenyconvertmarketdatafault3553doctype");
     
     /**
      * Gets the "currenyConvertMarketDataFault" element
@@ -44,7 +42,7 @@ public interface CurrenyConvertMarketDataFaultDocument extends org.apache.xmlbea
     public interface CurrenyConvertMarketDataFault extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFault.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("currenyconvertmarketdatafaultf8a0elemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFault.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s971434CAC32F1D084047111627831612").resolveHandle("currenyconvertmarketdatafaultf8a0elemtype");
         
         /**
          * Gets the "InvalidMarketData" element
@@ -59,7 +57,7 @@ public interface CurrenyConvertMarketDataFaultDocument extends org.apache.xmlbea
         /**
          * Sets the "InvalidMarketData" element
          */
-        void setInvalidMarketData(Enum faultType);
+        void setInvalidMarketData(au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultType.Enum invalidMarketData);
         
         /**
          * Sets (as xml) the "InvalidMarketData" element

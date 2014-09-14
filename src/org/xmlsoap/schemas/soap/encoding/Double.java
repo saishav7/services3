@@ -16,7 +16,7 @@ package org.xmlsoap.schemas.soap.encoding;
 public interface Double extends org.apache.xmlbeans.XmlDouble
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Double.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("double6057type");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Double.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s971434CAC32F1D084047111627831612").resolveHandle("double6057type");
     
     /**
      * Gets the "id" attribute

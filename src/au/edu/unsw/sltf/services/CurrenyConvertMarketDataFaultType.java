@@ -16,7 +16,7 @@ package au.edu.unsw.sltf.services;
 public interface CurrenyConvertMarketDataFaultType extends org.apache.xmlbeans.XmlString
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFaultType.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sAE8EE28943CE90FFA55A40883D07091C").resolveHandle("currenyconvertmarketdatafaulttype8229type");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(CurrenyConvertMarketDataFaultType.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s971434CAC32F1D084047111627831612").resolveHandle("currenyconvertmarketdatafaulttype8229type");
     
     org.apache.xmlbeans.StringEnumAbstractBase enumValue();
     void set(org.apache.xmlbeans.StringEnumAbstractBase e);
@@ -24,10 +24,12 @@ public interface CurrenyConvertMarketDataFaultType extends org.apache.xmlbeans.X
     static final Enum INVALID_EVENT_SET_ID = Enum.forString("InvalidEventSetId");
     static final Enum INVALID_TARGET_CURRENCY = Enum.forString("InvalidTargetCurrency");
     static final Enum PRICE_ALREADY_CONVERTED = Enum.forString("PriceAlreadyConverted");
+    static final Enum PROGRAM_ERROR = Enum.forString("ProgramError");
     
     static final int INT_INVALID_EVENT_SET_ID = Enum.INT_INVALID_EVENT_SET_ID;
     static final int INT_INVALID_TARGET_CURRENCY = Enum.INT_INVALID_TARGET_CURRENCY;
     static final int INT_PRICE_ALREADY_CONVERTED = Enum.INT_PRICE_ALREADY_CONVERTED;
+    static final int INT_PROGRAM_ERROR = Enum.INT_PROGRAM_ERROR;
     
     /**
      * Enumeration value class for au.edu.unsw.sltf.services.CurrenyConvertMarketDataFaultType.
@@ -63,6 +65,7 @@ public interface CurrenyConvertMarketDataFaultType extends org.apache.xmlbeans.X
         static final int INT_INVALID_EVENT_SET_ID = 1;
         static final int INT_INVALID_TARGET_CURRENCY = 2;
         static final int INT_PRICE_ALREADY_CONVERTED = 3;
+        static final int INT_PROGRAM_ERROR = 4;
         
         public static final org.apache.xmlbeans.StringEnumAbstractBase.Table table =
             new org.apache.xmlbeans.StringEnumAbstractBase.Table
@@ -72,6 +75,7 @@ public interface CurrenyConvertMarketDataFaultType extends org.apache.xmlbeans.X
                 new Enum("InvalidEventSetId", INT_INVALID_EVENT_SET_ID),
                 new Enum("InvalidTargetCurrency", INT_INVALID_TARGET_CURRENCY),
                 new Enum("PriceAlreadyConverted", INT_PRICE_ALREADY_CONVERTED),
+                new Enum("ProgramError", INT_PROGRAM_ERROR),
             }
         );
         private static final long serialVersionUID = 1L;
