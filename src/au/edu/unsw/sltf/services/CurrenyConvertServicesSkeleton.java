@@ -45,7 +45,6 @@ import au.edu.unsw.sltf.services.helper.MarketData;
   throws CurrenyConvertMarketDataFaultException{
       	 CurrenyConvertMarketData ccmd = currenyConvertMarketData0.getCurrenyConvertMarketData();
       	 MarketData marketData;
-			try {
 			marketData = new MarketData(ccmd.getEventSetId());
           	 List<MarketData> m = marketData.getMd();
           	 CurrenyConvertMarketDataResponseDocument ccmdRespDoc = CurrenyConvertMarketDataResponseDocument.Factory.newInstance();
@@ -91,10 +90,6 @@ import au.edu.unsw.sltf.services.helper.MarketData;
            ccmdResp.setEventSetId(Integer.toString(fileName));
            ccmdRespDoc.setCurrenyConvertMarketDataResponse(ccmdResp);
            return ccmdRespDoc;
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			throw ccFaultException("InvalidEventSetId");
-		}
       	 
 }
                  
