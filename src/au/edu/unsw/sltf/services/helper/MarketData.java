@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,8 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-
-import com.sun.tools.xjc.reader.xmlschema.parser.IncorrectNamespaceURIChecker;
 
 public class MarketData {
 	private int index;
@@ -37,7 +34,7 @@ public class MarketData {
 	private String csvString;
 	private long fileSize;
 	
-	static List<MarketData> md = new ArrayList<MarketData>();
+	private List<MarketData> md = new ArrayList<MarketData>();
 	
 
 	public MarketData(String eventSetId) throws FileNotFoundException {
@@ -54,7 +51,7 @@ public class MarketData {
 	}
 	
 	public MarketData(String sec2, Calendar startDate, Calendar endDate,
-			String dataSourceURL) throws IOException, IncorrectTimeException {
+			String dataSourceURL) throws IOException, IncorrectTimeException, ParseException {
 		this.sec = sec2;
 		this.startTime = startDate;
 		this.endTime = endDate;
