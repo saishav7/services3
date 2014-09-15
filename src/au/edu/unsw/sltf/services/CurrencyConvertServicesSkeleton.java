@@ -26,7 +26,7 @@ import au.edu.unsw.sltf.services.helper.MarketData;
      */
     public class CurrencyConvertServicesSkeleton implements CurrencyConvertServicesSkeletonInterface{
     	
-        private String resourcesFolder = System.getProperty("catalina.home") + "/webapps/ROOT/cs9322ass1/";
+        private String resourcesFolder = System.getProperty("catalina.base") + "/webapps/SoapServices/cs9322ass1/";
 
         /**
          * Auto generated method signature
@@ -100,6 +100,8 @@ import au.edu.unsw.sltf.services.helper.MarketData;
 			} catch (InvalidCurrencyException e1) {
 				e1.printStackTrace();
 				throw ccFaultException("InvalidTargetCurrency");
+			} catch (ParseException e1) {
+				throw ccFaultException("InvalidEventSetId");
 			}
         }
                  
